@@ -53,18 +53,18 @@ export function TaskDialog({ open, draft, onChange, onClose, onSave }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-black/30" onClick={onClose}>
+    <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center bg-[#0F172A]/20 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="w-full max-w-[480px] bg-surface rounded-t-2xl sm:rounded-2xl shadow-elevated px-5 pt-4 pb-6 safe-bottom"
+        className="w-full max-w-[480px] glass-strong rounded-t-2xl sm:rounded-2xl shadow-glass-lg px-5 pt-4 pb-6 safe-bottom"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-[#CBD5E1] sm:hidden" />
+        <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-slate-300 sm:hidden" />
 
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-[#134E4A]">{isEditing ? 'Edit task' : 'New task'}</h2>
+          <h2 className="text-lg font-semibold text-[#0F172A]">{isEditing ? 'Edit task' : 'New task'}</h2>
           <button
             onClick={onClose}
-            className="px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary-container rounded-lg transition-colors"
+            className="px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/10 rounded-xl transition-colors"
           >
             Cancel
           </button>
@@ -77,7 +77,7 @@ export function TaskDialog({ open, draft, onChange, onClose, onSave }: Props) {
             value={draft.title}
             onChange={(e) => onChange({ ...draft, title: e.target.value })}
             placeholder="What needs doing?"
-            className="mt-1 w-full bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] focus:border-primary focus:ring-1 focus:ring-primary outline-none px-4 py-2.5 text-base text-[#134E4A] placeholder:text-muted/50 transition-all"
+            className="mt-1 w-full bg-white/60 rounded-xl border border-slate-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none px-4 py-2.5 text-base text-[#0F172A] placeholder:text-muted/50 transition-all"
           />
           {showError && (
             <span className="text-xs text-destructive mt-1.5 block font-medium">Title is required.</span>
@@ -91,7 +91,7 @@ export function TaskDialog({ open, draft, onChange, onClose, onSave }: Props) {
             onChange={(e) => onChange({ ...draft, notes: e.target.value })}
             placeholder="Any details…"
             rows={2}
-            className="mt-1 w-full bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] focus:border-primary focus:ring-1 focus:ring-primary outline-none px-4 py-2.5 text-base text-[#134E4A] placeholder:text-muted/50 resize-none transition-all"
+            className="mt-1 w-full bg-white/60 rounded-xl border border-slate-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none px-4 py-2.5 text-base text-[#0F172A] placeholder:text-muted/50 resize-none transition-all"
           />
         </label>
 
@@ -102,7 +102,7 @@ export function TaskDialog({ open, draft, onChange, onClose, onSave }: Props) {
               type="datetime-local"
               value={toLocalInput(draft.dueAt)}
               onChange={(e) => onChange({ ...draft, dueAt: fromLocalInput(e.target.value) })}
-              className="flex-1 bg-[#F8FAFC] rounded-xl border border-[#E2E8F0] focus:border-primary focus:ring-1 focus:ring-primary outline-none px-4 py-2.5 text-base text-[#134E4A] transition-all"
+              className="flex-1 bg-white/60 rounded-xl border border-slate-200 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none px-4 py-2.5 text-base text-[#0F172A] transition-all"
             />
             {draft.dueAt && (
               <button
@@ -117,20 +117,20 @@ export function TaskDialog({ open, draft, onChange, onClose, onSave }: Props) {
 
         <label className="mt-4 flex items-center justify-between px-0.5">
           <div>
-            <span className="text-sm text-[#134E4A] font-medium">Reminder</span>
+            <span className="text-sm text-[#0F172A] font-medium">Reminder</span>
             <p className="text-xs text-muted">Get a notification when due.</p>
           </div>
           <button
             onClick={() => onChange({ ...draft, reminder: !draft.reminder })}
-            className={`w-11 h-6 rounded-full transition-colors duration-200 relative ${
-              draft.reminder ? 'bg-primary' : 'bg-[#CBD5E1]'
+            className={`w-11 h-6 rounded-full transition-all duration-300 relative ${
+              draft.reminder ? 'bg-primary shadow-sm shadow-primary/30' : 'bg-slate-300'
             }`}
             aria-pressed={draft.reminder}
             aria-label="Toggle reminder"
             type="button"
           >
             <span
-              className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 ${
+              className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-all duration-300 ${
                 draft.reminder ? 'translate-x-[22px]' : 'translate-x-0.5'
               }`}
             />
@@ -140,7 +140,7 @@ export function TaskDialog({ open, draft, onChange, onClose, onSave }: Props) {
         <button
           onClick={handleSave}
           disabled={!canSubmit}
-          className="mt-6 w-full py-3 rounded-xl bg-primary text-white font-semibold shadow-sm hover:bg-primary-light active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
+          className="mt-6 w-full py-3 rounded-xl bg-primary text-white font-semibold shadow-lg shadow-primary/25 hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 disabled:shadow-none"
         >
           {isEditing ? 'Save changes' : 'Add task'}
         </button>

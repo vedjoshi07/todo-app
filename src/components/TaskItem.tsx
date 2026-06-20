@@ -35,8 +35,8 @@ export function TaskItem({ task, onToggle, onEdit, onDelete }: Props) {
   const due = formatDue(task.dueAt)
 
   return (
-    <div className="relative overflow-hidden rounded-xl">
-      <div className="absolute inset-y-0 right-0 w-20 bg-destructive flex items-center justify-center rounded-xl">
+    <div className="relative overflow-hidden rounded-2xl">
+      <div className="absolute inset-y-0 right-0 w-20 bg-destructive/90 flex items-center justify-center rounded-2xl">
         <button
           onClick={() => onDelete(task.id)}
           className="w-full h-full flex items-center justify-center text-white"
@@ -48,7 +48,7 @@ export function TaskItem({ task, onToggle, onEdit, onDelete }: Props) {
 
       <div
         onClick={() => onEdit(task)}
-        className={`relative bg-surface rounded-xl px-4 py-3.5 flex items-start gap-3 shadow-card transition-all duration-200 hover:shadow-elevated ${
+        className={`relative glass rounded-2xl px-4 py-3.5 flex items-start gap-3.5 shadow-glass transition-all duration-300 ease-out hover:shadow-glass-lg hover:border-primary/20 ${
           swiped ? '-translate-x-20' : 'translate-x-0'
         }`}
         onTouchStart={(e) => {
@@ -71,10 +71,10 @@ export function TaskItem({ task, onToggle, onEdit, onDelete }: Props) {
             e.stopPropagation()
             onToggle(task.id)
           }}
-          className={`mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+          className={`mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
             task.completed
               ? 'bg-primary border-primary'
-              : 'border-[#CBD5E1] hover:border-primary'
+              : 'border-slate-300 hover:border-primary hover:bg-primary/5'
           }`}
           aria-label={task.completed ? 'Mark active' : 'Mark complete'}
         >
@@ -88,13 +88,13 @@ export function TaskItem({ task, onToggle, onEdit, onDelete }: Props) {
         <div className="flex-1 min-w-0">
           <p
             className={`text-[15px] font-medium leading-snug ${
-              task.completed ? 'line-through text-muted/50' : 'text-[#134E4A]'
+              task.completed ? 'line-through text-slate-400' : 'text-[#0F172A]'
             }`}
           >
             {task.title}
           </p>
           {task.notes && (
-            <p className={`mt-0.5 text-sm leading-snug ${task.completed ? 'text-muted/40 line-through' : 'text-muted'}`}>
+            <p className={`mt-0.5 text-sm leading-snug ${task.completed ? 'text-slate-300 line-through' : 'text-muted'}`}>
               {task.notes}
             </p>
           )}
@@ -103,7 +103,7 @@ export function TaskItem({ task, onToggle, onEdit, onDelete }: Props) {
               <ClockIcon overdue={due.overdue && !task.completed} />
               <span
                 className={`text-xs ${
-                  due.overdue && !task.completed ? 'text-accent font-semibold' : 'text-muted'
+                  due.overdue && !task.completed ? 'text-destructive font-semibold' : 'text-muted'
                 }`}
               >
                 {due.label}
@@ -120,7 +120,7 @@ export function TaskItem({ task, onToggle, onEdit, onDelete }: Props) {
             e.stopPropagation()
             onDelete(task.id)
           }}
-          className="mt-0.5 p-1.5 rounded-lg text-muted/40 hover:text-destructive hover:bg-red-50 transition-all duration-200"
+          className="mt-0.5 p-1.5 rounded-xl text-slate-300 hover:text-destructive hover:bg-destructive/10 transition-all duration-200"
           aria-label="Delete task"
         >
           <TrashIcon className="w-4 h-4" />
@@ -131,7 +131,7 @@ export function TaskItem({ task, onToggle, onEdit, onDelete }: Props) {
 }
 
 function ClockIcon({ overdue }: { overdue: boolean }) {
-  const stroke = overdue ? '#EA580C' : '#94A3B8'
+  const stroke = overdue ? '#EF4444' : '#94A3B8'
   return (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="9" stroke={stroke} strokeWidth="1.8" />

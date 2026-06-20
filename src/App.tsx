@@ -113,7 +113,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-full bg-surface-variant flex flex-col safe-top safe-bottom">
+    <div className="min-h-full flex flex-col safe-top safe-bottom">
       <TopBar taskCount={counts.active} />
 
       <FilterTabs filter={filter} onChange={setFilter} counts={counts} />
