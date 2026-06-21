@@ -29,7 +29,7 @@ function fireNotification(task: Task) {
     const n = new Notification(task.title, {
       body: task.notes || 'Task is due now',
       tag: `task-${task.id}`,
-      icon: '/icon-192.png',
+      icon: '/todo-app/icon-512.svg',
     })
     n.onclick = () => {
       window.focus()
@@ -78,7 +78,7 @@ export function stopReminderLoop() {
 export function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => {
+      navigator.serviceWorker.register('/todo-app/sw.js').catch(() => {
         // ignore — the app still works without offline support
       })
     })
