@@ -1,6 +1,6 @@
 // Minimal service worker: cache app shell for offline use.
 const CACHE = 'todo-app-v1'
-const ASSETS = ['/', '/index.html', '/manifest.webmanifest', '/icon.svg']
+const ASSETS = ['/todo-app/', '/todo-app/index.html', '/todo-app/manifest.webmanifest', '/todo-app/icon.svg']
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

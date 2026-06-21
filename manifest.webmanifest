@@ -2,13 +2,13 @@
   "name": "Todos",
   "short_name": "Todos",
   "description": "A simple, beautiful todo list with reminders.",
-  "start_url": "/",
+  "start_url": "/todo-app/",
   "display": "standalone",
   "background_color": "#fefbff",
   "theme_color": "#4f46e5",
   "orientation": "portrait",
   "icons": [
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "/icon-512.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    { "src": "/todo-app/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/todo-app/icon-512.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
   ]
 }
